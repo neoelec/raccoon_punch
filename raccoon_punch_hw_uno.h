@@ -33,9 +33,12 @@
 
 #include "raccoon_punch.h"
 
-#define RACCOON_PUNCH_HW_UNO_LCD_SLAVE		0x27
-#define RACCOON_PUNCH_HW_UNO_LCD_COL		16
-#define RACCOON_PUNCH_HW_UNO_LCD_ROW		2
+// if PCF8574 is used then use the bellow slave address.
+//#define RACCOON_PUNCH_HW_UNO_LCD_SLAVE		0x27
+// if PCF8574A is used then use the bellow slave address.
+#define RACCOON_PUNCH_HW_UNO_LCD_SLAVE		0x3F
+#define RACCOON_PUNCH_HW_UNO_LCD_COL		20
+#define RACCOON_PUNCH_HW_UNO_LCD_ROW		4
 #define RACCOON_PUNCH_HW_UNO_LCD_NR_CHAR	\
 	((RACCOON_PUNCH_HW_UNO_LCD_COL) * (RACCOON_PUNCH_HW_UNO_LCD_ROW))
 

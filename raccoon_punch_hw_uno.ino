@@ -63,7 +63,7 @@ void raccoon_punch_hw_uno::init(void)
 
 	pinMode(clk_pin, INPUT);
 	pinMode(data_pin, INPUT);
-	pinMode(key_pin, INPUT_PULLUP);
+	pinMode(key_pin, INPUT);
 
 	lcd->begin();
 	lcd->backlight();
@@ -164,7 +164,7 @@ void raccoon_punch_hw_uno::lcd_print(char ch)
 		return;
 	}
 
-	if (lcd_col++ > lcd_col_max) {
+	if (lcd_col > lcd_col_max) {
 		lcd_col = 0;
 		if (++lcd_row > lcd_row_max)
 			lcd_scroll();
@@ -172,7 +172,9 @@ void raccoon_punch_hw_uno::lcd_print(char ch)
 	}
 
 	lcd->print(ch);
-	lcd_line_buf[lcd_row][lcd_col - 1] = ch;
+	lcd_line_buf[lcd_row][lcd_col] = ch;
+
+	lcd_col++;
 }
 
 void raccoon_punch_hw_uno::lcd_print(const char *str)
