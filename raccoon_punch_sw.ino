@@ -82,6 +82,7 @@ static const char __FS[] PROGMEM = "FS";
 static const char __GS[] PROGMEM = "GS";
 static const char __RS[] PROGMEM = "RS";
 static const char __US[] PROGMEM = "US";
+static const char __SP[] PROGMEM = "SP";
 
 static const char * const __non_visible_char[] PROGMEM = {
 	__NUL,
@@ -116,6 +117,7 @@ static const char * const __non_visible_char[] PROGMEM = {
 	__GS,
 	__RS,
 	__US,
+	__SP,
 };
 
 static const char __DEL[] PROGMEM = "DEL";
@@ -157,7 +159,7 @@ void raccoon_punch_sw::loop(void)
 	case E_RACCOON_PUNCH_SW_STATE_DECODE:
 		timestamp_last = timestamp;
 		punch_hw->lcd_print(" = ");
-		if (data < (uint8_t)' ') {
+		if (data < (uint8_t)'!') {
 			non_visible_char = (const char *)pgm_read_word(&__non_visible_char[data]);
 			punch_hw->lcd_print_P(non_visible_char);
 		} else if (0x7F == data)	/* DEL */
